@@ -15,14 +15,19 @@ public abstract class GameObject {
 
 	//EACH GAME OBJECT CAN HAVE A COLLECTION OF IMAGES
 	protected List<Icon> imageList;
-	protected int currentImage; 
+	protected int currentImage;
+	protected int defaultDirection;
+
 
 	public GameObject(int x, int y) {
-		this.x = x;
-		this.y = y;
-		velocity = 0;
-		currentImage = 0;
+	    this.x = x;
+	    this.y = y;
+	    velocity = 0;
+	    currentImage = 0;
+	    direction = Direction.NONE;
+	    defaultDirection = Direction.NONE;
 	}
+
 
 	public void draw(Component c, Graphics g) {
 		imageList.get(currentImage).paintIcon(c, g, x, y);
@@ -83,6 +88,15 @@ public abstract class GameObject {
 	public void setUnderUserControl(boolean control) {
 	    underUserControl = control;
 	}
+	
+	public void resetToDefaultBehavior() {
+	    direction = defaultDirection;
+	}
+	
+	public void userMove(int keyCode) {
+	    // default: do nothing
+	}
+
 
 
 

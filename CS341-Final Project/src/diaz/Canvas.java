@@ -120,21 +120,20 @@ public class Canvas extends JComponent implements ActionListener, KeyListener {
     public void keyTyped(KeyEvent e) {}
 
     public void keyPressed(KeyEvent e) {
-    	GameObject selected = gameObjectList.get(highlighted);
+        GameObject selected = gameObjectList.get(highlighted);
 
-    	if (selected.isUnderUserControl() && selected instanceof KeyListener) {
-    	    ((KeyListener) selected).keyPressed(e);
-    	}
-
-
-
+        if (selected.isUnderUserControl()) {
+            selected.userMove(e.getKeyCode());
+        }
     }
+
 
     public void keyReleased(KeyEvent e) {
     	if (e.getKeyCode() == KeyEvent.VK_TAB) {
 
-    	    // Turn OFF user control for old highlighted object
-    	    gameObjectList.get(highlighted).setUnderUserControl(false);
+    		GameObject oldObj = gameObjectList.get(highlighted);
+    		oldObj.setUnderUserControl(false);
+    		oldObj.resetToDefaultBehavior();
 
     	    // Move highlight
     	    highlighted++;
