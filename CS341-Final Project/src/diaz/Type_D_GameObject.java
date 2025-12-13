@@ -55,7 +55,7 @@ public class Type_D_GameObject extends GameObject {
     }
   }
 
-  // 🔑 THIS REPLACES keyPressed()
+  // THIS REPLACES keyPressed()
   @Override
   public void userMove(int keyCode) {
     if (keyCode == KeyEvent.VK_UP) {
